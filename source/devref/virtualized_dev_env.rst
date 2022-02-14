@@ -132,7 +132,8 @@ Debug installation process
 ~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 Once you run the create plan command, you follow the installation process and
-debug issues by following the output of cloud-init in the installer vm.
+debug issues by following the output of cloud-init in the installer vm. Take
+not that this may take a while to complete.
 
 .. code-block:: console
 
