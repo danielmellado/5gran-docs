@@ -131,7 +131,7 @@ From the `kcli-openshift4-baremetal` directory, run:
 Debug installation process
 ~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-Once you run the create plan command, you follow the installation process and
+Once you run the create plan command, just follow the installation process and
 debug issues by following the output of cloud-init in the installer vm. Take
 not that this may take a while to complete.
 
