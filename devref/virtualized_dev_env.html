@@ -123,7 +123,7 @@ secret file and name it as <cite>openshift_pull.json</cite></p></li>
 additional VM, called lab-installer, from which we’ll access the kubeconfig
 files and kubernetes/openshift files.</p>
 <p>Once deployed, you can access such machine by using:</p>
-<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>kcli ssh lab-mgmt-spoke1-node-0
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>kcli ssh lab-installer
 </pre></div>
 </div>
 </section>
@@ -146,10 +146,12 @@ it under the <cite>kcli-openshift4-baremetal</cite> directory.</p>
 <span class="nt">domain</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">karmalabs.com</span><span class="w"></span>
 <span class="nt">baremetal_cidr</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">2620:52:0:1302::/64</span><span class="w"></span>
 <span class="nt">baremetal_net</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">lab-baremetal</span><span class="w"></span>
-<span class="nt">virtual_masters_memory</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">16384</span><span class="w"></span>
-<span class="nt">virtual_masters_numcpus</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">8</span><span class="w"></span>
+<span class="nt">virtual_masters_memory</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">24576</span><span class="w"></span>
+<span class="nt">virtual_masters_numcpus</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">16</span><span class="w"></span>
+<span class="nt">disk_size</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">100</span><span class="w"></span>
 <span class="nt">api_ip</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">2620:52:0:1302::2</span><span class="w"></span>
 <span class="nt">ingress_ip</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">2620:52:0:1302::3</span><span class="w"></span>
+<span class="nt">monitoring_retention</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">24h</span><span class="w"></span>
 <span class="nt">baremetal_ips</span><span class="p">:</span><span class="w"></span>
 <span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">2620:52:0:1302::20</span><span class="w"></span>
 <span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">2620:52:0:1302::21</span><span class="w"></span>
@@ -187,7 +189,7 @@ it under the <cite>kcli-openshift4-baremetal</cite> directory.</p>
 <h2>Debug installation process<a class="headerlink" href="#debug-installation-process" title="Permalink to this headline"></a></h2>
 <p>Once you run the create plan command, just follow the installation process and
 debug issues by following the output of cloud-init in the installer vm. Take
-not that this may take a while to complete.</p>
+note that this may take a while to complete.</p>
 <div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>kcli ssh lab-installer
 <span class="gp">$ </span>tail -f /var/log/cloud-init-output.log
 </pre></div>
