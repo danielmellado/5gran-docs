@@ -12,9 +12,9 @@
       '''''''  Heading 4
       (Avoid deeper levels because they do not render well.)
 
-=============================
-Virtual Developer Environment
-=============================
+=========================================================
+Virtual Developer Environment - Compact Hub Cluster (3:0)
+=========================================================
 
 We'll be creating a virtualized cluster containing:
 
@@ -22,12 +22,12 @@ We'll be creating a virtualized cluster containing:
 * SNO cluster, managed by ACM as spoke.
 
 In order to do so, we'll be relying on kcli as a tool to handle the creation
-and configuration of the vms.
+and configuration of the VMs.
 
 .. note::
 
   You'll be in need of a server to handle this, as its memory requirements
-  would be probably greater than your latops. You should consider at least
+  would be probably greater than your laptops. You should consider at least
   16GBi of ram for every node and 32Gbi for the spoke and lab-installer ones.
 
 
@@ -63,7 +63,7 @@ Once deployed, you can access such machine by using:
 
 .. code-block:: console
 
-   $ kcli ssh lab-mgmt-spoke1-node-0
+   $ kcli lab-installer
 
 
 Parameters file
@@ -132,7 +132,7 @@ Debug installation process
 ~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 Once you run the create plan command, just follow the installation process and
-debug issues by following the output of cloud-init in the installer vm. Take
+debug issues by following the output of cloud-init in the installer VM. Take
 not that this may take a while to complete.
 
 .. code-block:: console

@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Virtual Developer Environment &mdash; 5G RAN docs  documentation</title>
+  <title>Virtual Developer Environment - Compact Hub Cluster (3:0) &mdash; 5G RAN docs  documentation</title>
       <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
   <!--[if lt IE 9]>
@@ -14,11 +14,12 @@
         <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
         <script src="../_static/jquery.js"></script>
         <script src="../_static/underscore.js"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
         <script src="../_static/doctools.js"></script>
     <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="prev" title="Developer Guides" href="index.html" /> 
+    <link rel="prev" title="Virtual Developer Environment - SNO Hub Cluster (1:0)" href="virtualized_dev_env_sno.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -42,7 +43,8 @@
 <ul class="current">
 <li class="toctree-l1 current"><a class="reference internal" href="index.html">Developer Guides</a><ul class="current">
 <li class="toctree-l2 current"><a class="reference internal" href="index.html#developer-environment">Developer environment</a><ul class="current">
-<li class="toctree-l3 current"><a class="current reference internal" href="#">Virtual Developer Environment</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="virtualized_dev_env_sno.html">Virtual Developer Environment - SNO Hub Cluster (1:0)</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">Virtual Developer Environment - Compact Hub Cluster (3:0)</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="#prerequisites">Prerequisites</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#lab-architecture">Lab Architecture</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#parameters-file">Parameters file</a></li>
@@ -72,9 +74,9 @@
   <ul class="wy-breadcrumbs">
       <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
           <li><a href="index.html">Developer Guides</a> &raquo;</li>
-      <li>Virtual Developer Environment</li>
+      <li>Virtual Developer Environment - Compact Hub Cluster (3:0)</li>
       <li class="wy-breadcrumbs-aside">
-            <a href="../_sources/devref/virtualized_dev_env.rst.txt" rel="nofollow"> View page source</a>
+            <a href="../_sources/devref/virtualized_dev_env_compact.rst.txt" rel="nofollow"> View page source</a>
       </li>
   </ul>
   <hr/>
@@ -82,23 +84,23 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <section id="virtual-developer-environment">
-<h1>Virtual Developer Environment<a class="headerlink" href="#virtual-developer-environment" title="Permalink to this headline"></a></h1>
+  <section id="virtual-developer-environment-compact-hub-cluster-3-0">
+<h1>Virtual Developer Environment - Compact Hub Cluster (3:0)<a class="headerlink" href="#virtual-developer-environment-compact-hub-cluster-3-0" title="Permalink to this heading"></a></h1>
 <p>We’ll be creating a virtualized cluster containing:</p>
 <ul class="simple">
 <li><p>3-Master OpenShift, including ACM, as hub cluster.</p></li>
 <li><p>SNO cluster, managed by ACM as spoke.</p></li>
 </ul>
 <p>In order to do so, we’ll be relying on kcli as a tool to handle the creation
-and configuration of the vms.</p>
+and configuration of the VMs.</p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
 <p>You’ll be in need of a server to handle this, as its memory requirements
-would be probably greater than your latops. You should consider at least
+would be probably greater than your laptops. You should consider at least
 16GBi of ram for every node and 32Gbi for the spoke and lab-installer ones.</p>
 </div>
 <section id="prerequisites">
-<h2>Prerequisites<a class="headerlink" href="#prerequisites" title="Permalink to this headline"></a></h2>
+<h2>Prerequisites<a class="headerlink" href="#prerequisites" title="Permalink to this heading"></a></h2>
 <ul class="simple">
 <li><p>Install kcli <a class="reference external" href="https://github.com/karmab/kcli.git">https://github.com/karmab/kcli.git</a></p></li>
 <li><p>Clone locally <a class="reference external" href="https://github.com/karmab/kcli-openshift4-baremetal">https://github.com/karmab/kcli-openshift4-baremetal</a></p></li>
@@ -107,7 +109,7 @@ secret file and name it as <cite>openshift_pull.json</cite></p></li>
 </ul>
 </section>
 <section id="lab-architecture">
-<h2>Lab Architecture<a class="headerlink" href="#lab-architecture" title="Permalink to this headline"></a></h2>
+<h2>Lab Architecture<a class="headerlink" href="#lab-architecture" title="Permalink to this heading"></a></h2>
 <div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">+------------------------+--------+----------------------+------------------------------------------------------+------+---------+</span>
 <span class="go">|          Name          | Status |         Ips          |                        Source                        | Plan | Profile |</span>
 <span class="go">+------------------------+--------+----------------------+------------------------------------------------------+------+---------+</span>
@@ -123,12 +125,12 @@ secret file and name it as <cite>openshift_pull.json</cite></p></li>
 additional VM, called lab-installer, from which we’ll access the kubeconfig
 files and kubernetes/openshift files.</p>
 <p>Once deployed, you can access such machine by using:</p>
-<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>kcli ssh lab-mgmt-spoke1-node-0
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>kcli lab-installer
 </pre></div>
 </div>
 </section>
 <section id="parameters-file">
-<h2>Parameters file<a class="headerlink" href="#parameters-file" title="Permalink to this headline"></a></h2>
+<h2>Parameters file<a class="headerlink" href="#parameters-file" title="Permalink to this heading"></a></h2>
 <p>Kcli needs a parameters file in order to run the installation. To do so, create
 a file with the following parameters, name it as <cite>kcli_parameters.yml</cite> and put
 it under the <cite>kcli-openshift4-baremetal</cite> directory.</p>
@@ -177,16 +179,16 @@ it under the <cite>kcli-openshift4-baremetal</cite> directory.</p>
 </div>
 </section>
 <section id="create-cluster">
-<h2>Create cluster<a class="headerlink" href="#create-cluster" title="Permalink to this headline"></a></h2>
+<h2>Create cluster<a class="headerlink" href="#create-cluster" title="Permalink to this heading"></a></h2>
 <p>From the <cite>kcli-openshift4-baremetal</cite> directory, run:</p>
 <div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>kcli create plan -f plans/kcli_plan_ztp.yml --paramfile kcli_parameters.yml lab
 </pre></div>
 </div>
 </section>
 <section id="debug-installation-process">
-<h2>Debug installation process<a class="headerlink" href="#debug-installation-process" title="Permalink to this headline"></a></h2>
+<h2>Debug installation process<a class="headerlink" href="#debug-installation-process" title="Permalink to this heading"></a></h2>
 <p>Once you run the create plan command, just follow the installation process and
-debug issues by following the output of cloud-init in the installer vm. Take
+debug issues by following the output of cloud-init in the installer VM. Take
 not that this may take a while to complete.</p>
 <div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>kcli ssh lab-installer
 <span class="gp">$ </span>tail -f /var/log/cloud-init-output.log
@@ -199,7 +201,7 @@ not that this may take a while to complete.</p>
            </div>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="index.html" class="btn btn-neutral float-left" title="Developer Guides" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="virtualized_dev_env_sno.html" class="btn btn-neutral float-left" title="Virtual Developer Environment - SNO Hub Cluster (1:0)" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
     </div>
 
   <hr/>
